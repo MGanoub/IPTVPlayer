@@ -1,21 +1,21 @@
 # IPTV Player
 
-A desktop IPTV player for Windows, built with WPF and LibVLCSharp. Connects to Xtream Codes–based providers, browses live channels by category, and plays streams directly — all with a local SQLite cache so your channel list survives a restart without hitting the network.
+A desktop IPTV player for Windows, built with WPF and LibVLCSharp. Connects to Xtream Codes–based providers, browses live channels by category, and plays streams directly. All with a local SQLite cache so your channel list survives a restart without hitting the network.
 
-This project was built as a practice exercise in C#, WPF, and EF Core — the architecture reflects that: it favors clarity over cleverness, and a few design decisions are called out below specifically because they were practicing moments.
+This project was built as a practice exercise in C#, WPF, and EF Core - The architecture reflects that: it favors clarity over cleverness, and a few design decisions are called out below specifically because they were practicing moments.
 
 <img width="1252" height="721" alt="image" src="https://github.com/user-attachments/assets/1c5c8689-30c3-4cf1-8cb3-927d3bc12c9c" />
 
 
 ## Features
 
-- **Multiple provider profiles** — save server URL, username, and password per provider, switch between them from a dropdown
-- **Xtream Codes API integration** — authenticates and pulls channels via `player_api.php`, not raw M3U export (more reliable, avoids slow/timeout-prone playlist export endpoints on some providers)
-- **Category browsing** — channels are grouped using the provider's real `get_live_categories` data, with a search box to filter categories (built to comfortably handle playlists in the 10,000+ channel range)
-- **Local caching via SQLite + EF Core** — channels and profiles persist to a local database; reopening the app shows your last-loaded channel list instantly, no re-fetch required
-- **Playback via LibVLCSharp** — handles HLS, MPEG-TS, and other live-stream formats VLC supports natively
-- **Playback controls** — play/pause, stop, volume
-- **Dark UI** — custom WPF styles and control templates (no default Windows chrome)
+- **Multiple provider profiles**  save server URL, username, and password per provider, switch between them from a dropdown
+- **Xtream Codes API integration**  authenticates and pulls channels via `player_api.php`, not raw M3U export (more reliable, avoids slow/timeout-prone playlist export endpoints on some providers)
+- **Category browsing**  channels are grouped using the provider's real `get_live_categories` data, with a search box to filter categories (built to comfortably handle playlists in the 10,000+ channel range)
+- **Local caching via SQLite + EF Core**  channels and profiles persist to a local database; reopening the app shows your last-loaded channel list instantly, no re-fetch required
+- **Playback via LibVLCSharp**  handles HLS, MPEG-TS, and other live-stream formats VLC supports natively
+- **Playback controls**  play/pause, stop, volume
+- **Dark UI**  custom WPF styles and control templates (no default Windows chrome)
 
 ## Tech stack
 
@@ -67,7 +67,7 @@ A few decisions worth explaining, since they weren't the first thing tried:
 ## Known limitations
 
 - **Credentials are stored in plaintext** in the local SQLite database. Fine for personal use on a trusted machine; not suitable as-is if this were ever multi-user or handling more sensitive credentials.
-- Tested primarily against one Xtream Codes provider — panel implementations vary, so stream URL patterns (`.ts` vs `.m3u8`, port differences between the API and stream server) may need adjustment for other providers.
+- Tested primarily against one Xtream Codes provider panel implementations vary, so stream URL patterns (`.ts` vs `.m3u8`, port differences between the API and stream server) may need adjustment for other providers.
 - No EPG (program guide) support yet.
 - No favorites yet.
 
