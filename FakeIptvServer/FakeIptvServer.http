@@ -1,0 +1,6 @@
+@FakeIptvServer_HostAddress = http://localhost:5113
+
+GET {{FakeIptvServer_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

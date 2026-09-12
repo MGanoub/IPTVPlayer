@@ -1,0 +1,53 @@
+﻿<Window x:Class="IpTvApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vlc="clr-namespace:LibVLCSharp.WPF;assembly=LibVLCSharp.WPF"
+        Title="IPTV Player" Height="600" Width="900">
+    <DockPanel>
+        <!-- Top bar: URL input + Load button -->
+        <StackPanel DockPanel.Dock="Top" Margin="8">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                <TextBlock Text="Playlist Name:" Width="90" VerticalAlignment="Center" />
+                <TextBox x:Name="PlaylistNameBox" Width="200" Text="My IPTV" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                <TextBlock Text="Server URL:" Width="90" VerticalAlignment="Center" />
+                <TextBox x:Name="PlaylistUrlBox" Width="400"
+                         Text="http://example.com:8080/get.php" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                <TextBlock Text="Username:" Width="90" VerticalAlignment="Center" />
+                <TextBox x:Name="UsernameBox" Width="200" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Password:" Width="90" VerticalAlignment="Center" />
+                <TextBox  x:Name="PasswordInput" Width="200" />
+                <Button x:Name="LoadButton" Content="Load Playlist"
+                        Click="LoadButton_Click" Margin="8,0,0,0" />
+                <TextBlock x:Name="StatusText" VerticalAlignment="Center" Margin="8,0" Foreground="Gray" />
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Left: channel list -->
+        <ListBox x:Name="ChannelList" DockPanel.Dock="Left" Width="250"
+                 DisplayMemberPath="Name"
+                 SelectionChanged="ChannelList_SelectionChanged" />
+
+        <!-- Right: placeholder for video later -->
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal"
+                    Background="#222" Margin="0">
+            <Button x:Name="PlayPauseButton" Content="Pause" Width="70"
+                    Click="PlayPauseButton_Click" Margin="8" />
+            <Button x:Name="StopButton" Content="Stop" Width="70"
+                    Click="StopButton_Click" Margin="0,8,8,8" />
+            <TextBlock Text="Vol" VerticalAlignment="Center" Foreground="White" Margin="8,0" />
+            <Slider x:Name="VolumeSlider" Width="120" Minimum="0" Maximum="100"
+                    Value="100" VerticalAlignment="Center"
+                    ValueChanged="VolumeSlider_ValueChanged" />
+        </StackPanel>
+        <vlc:VideoView x:Name="VideoView" />
+    </DockPanel>
+</Window>
