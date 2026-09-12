@@ -212,6 +212,7 @@ namespace IpTvApp
             {
                 var media = new Media(_libVLC, channel.Url, FromType.FromLocation);
                 media.AddOption(":http-user-agent=VLC/3.0.18 LibVLC/3.0.18");
+                NowPlayingText.Text = channel.Name;
                 StatusText.Text = $"Connecting to {channel.Name}...";
                 _mediaPlayer.Play(media);
                 PlayPauseButton.Content = "Pause";
