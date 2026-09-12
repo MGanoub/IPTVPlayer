@@ -80,7 +80,3 @@ A few decisions worth explaining, since they weren't the first thing tried:
 ## Disclaimer
 
 This is a generic IPTV client. It does not provide, bundle, or endorse any specific content or provider. You are responsible for only using it with IPTV services you're legitimately authorized to access.
-
-## License
-
-All rights reserved. This code is not licensed for reuse, modification, or distribution without prior written permission.
