@@ -1,4 +1,4 @@
-# IpTvApp
+# IPTV Player
 
 A desktop IPTV player for Windows, built with WPF and LibVLCSharp. Connects to Xtream Codes–based providers, browses live channels by category, and plays streams directly — all with a local SQLite cache so your channel list survives a restart without hitting the network.
 
