@@ -2,10 +2,20 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vlc="clr-namespace:LibVLCSharp.WPF;assembly=LibVLCSharp.WPF"
-        Title="IPTV Player" Height="600" Width="900">
+        Title="IPTV Player" Height="600" Width="1000">
     <DockPanel>
-        <!-- Top bar: URL input + Load button -->
+        <!-- Top bar: profile + playlist inputs -->
         <StackPanel DockPanel.Dock="Top" Margin="8">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                <TextBlock Text="Profile:" Width="90" VerticalAlignment="Center" />
+                <ComboBox x:Name="ProfileComboBox" Width="200"
+                          DisplayMemberPath="Name"
+                          SelectionChanged="ProfileComboBox_SelectionChanged" />
+                <Button Content="New Profile" Click="NewProfileButton_Click" Margin="8,0,0,0" />
+                <Button Content="Save Profile" Click="SaveProfileButton_Click" Margin="8,0,0,0" />
+                <Button Content="Delete Profile" Click="DeleteProfileButton_Click" Margin="8,0,0,0" />
+            </StackPanel>
+
             <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
                 <TextBlock Text="Playlist Name:" Width="90" VerticalAlignment="Center" />
                 <TextBox x:Name="PlaylistNameBox" Width="200" Text="My IPTV" />
@@ -13,8 +23,7 @@
 
             <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
                 <TextBlock Text="Server URL:" Width="90" VerticalAlignment="Center" />
-                <TextBox x:Name="PlaylistUrlBox" Width="400"
-                         Text="http://example.com:8080/get.php" />
+                <TextBox x:Name="PlaylistUrlBox" Width="400" Text="http://example.com:8080" />
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
@@ -24,21 +33,15 @@
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Password:" Width="90" VerticalAlignment="Center" />
-                <TextBox  x:Name="PasswordInput" Width="200" />
+                <TextBox x:Name="PasswordInput" Width="200" />
                 <Button x:Name="LoadButton" Content="Load Playlist"
                         Click="LoadButton_Click" Margin="8,0,0,0" />
                 <TextBlock x:Name="StatusText" VerticalAlignment="Center" Margin="8,0" Foreground="Gray" />
             </StackPanel>
         </StackPanel>
 
-        <!-- Left: channel list -->
-        <ListBox x:Name="ChannelList" DockPanel.Dock="Left" Width="250"
-                 DisplayMemberPath="Name"
-                 SelectionChanged="ChannelList_SelectionChanged" />
-
-        <!-- Right: placeholder for video later -->
-        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal"
-                    Background="#222" Margin="0">
+        <!-- Bottom: playback controls -->
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Background="#222">
             <Button x:Name="PlayPauseButton" Content="Pause" Width="70"
                     Click="PlayPauseButton_Click" Margin="8" />
             <Button x:Name="StopButton" Content="Stop" Width="70"
@@ -48,6 +51,23 @@
                     Value="100" VerticalAlignment="Center"
                     ValueChanged="VolumeSlider_ValueChanged" />
         </StackPanel>
+
+        <!-- Left column 1: categories -->
+        <DockPanel DockPanel.Dock="Left" Width="220">
+            <TextBox x:Name="CategorySearchBox" DockPanel.Dock="Top" Margin="4"
+                     TextChanged="CategorySearchBox_TextChanged" />
+            <ListBox x:Name="CategoryList"
+                     SelectionChanged="CategoryList_SelectionChanged" />
+        </DockPanel>
+
+        <!-- Left column 2: channels within selected category -->
+        <ListBox x:Name="ChannelList" DockPanel.Dock="Left" Width="250"
+                 DisplayMemberPath="Name"
+                 SelectionChanged="ChannelList_SelectionChanged"
+                 VirtualizingPanel.IsVirtualizing="True"
+                 VirtualizingPanel.VirtualizationMode="Recycling" />
+
+        <!-- Remaining space: video -->
         <vlc:VideoView x:Name="VideoView" />
     </DockPanel>
 </Window>

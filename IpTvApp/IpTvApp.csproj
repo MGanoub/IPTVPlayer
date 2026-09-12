@@ -11,6 +11,12 @@
     <ItemGroup>
       <PackageReference Include="LibVLCSharp" Version="3.10.1" />
       <PackageReference Include="LibVLCSharp.WPF" Version="3.10.1" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.12">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="10.0.12" />
+      <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="3.0.5" />
       <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.23.1" />
     </ItemGroup>
 
