@@ -7,19 +7,24 @@
     <DockPanel>
 
         <!-- Top bar: profile + playlist inputs -->
-        <Border DockPanel.Dock="Top" Background="{StaticResource BgSurface}"
-                BorderBrush="{StaticResource BorderHairline}" BorderThickness="0,0,0,1">
-            <StackPanel Margin="12,10">
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
-                    <TextBlock Text="PROFILE" Style="{StaticResource LabelText}" Width="90" VerticalAlignment="Center" />
-                    <ComboBox x:Name="ProfileComboBox" Width="200"
-                              DisplayMemberPath="Name"
-                              SelectionChanged="ProfileComboBox_SelectionChanged" />
-                    <Button Content="New" Click="NewProfileButton_Click" Margin="8,0,0,0" Width="70" />
-                    <Button Content="Save" Click="SaveProfileButton_Click" Margin="6,0,0,0" Width="70" />
-                    <Button Content="Delete" Click="DeleteProfileButton_Click" Margin="6,0,0,0" Width="70" />
-                </StackPanel>
+        <!-- Top bar: profile + playlist inputs -->
+<Border DockPanel.Dock="Top" Background="{StaticResource BgSurface}"
+        BorderBrush="{StaticResource BorderHairline}" BorderThickness="0,0,0,1">
+    <StackPanel Margin="12,10">
 
+        <!-- Always-visible row: profile picker + expand toggle -->
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
+            <TextBlock Text="PROFILE" Style="{StaticResource LabelText}" Width="90" VerticalAlignment="Center" />
+            <ComboBox x:Name="ProfileComboBox" Width="200"
+                      DisplayMemberPath="Name"
+                      SelectionChanged="ProfileComboBox_SelectionChanged" />
+            <Button Content="New" Click="NewProfileButton_Click" Margin="8,0,0,0" Width="70" />
+            <Button Content="Delete" Click="DeleteProfileButton_Click" Margin="6,0,0,0" Width="70" />
+        </StackPanel>
+
+        <!-- Collapsible section: only shown when editing/setting up a profile -->
+        <Expander x:Name="ProfileDetailsExpander" Header="Profile details" Foreground="{StaticResource TextSecondary}">
+            <StackPanel Margin="0,10,0,0">
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
                     <TextBlock Text="NAME" Style="{StaticResource LabelText}" Width="90" VerticalAlignment="Center" />
                     <TextBox x:Name="PlaylistNameBox" Width="200" Text="My IPTV" />
@@ -35,16 +40,24 @@
                     <TextBox x:Name="UsernameBox" Width="200" />
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
                     <TextBlock Text="PASSWORD" Style="{StaticResource LabelText}" Width="90" VerticalAlignment="Center" />
                     <TextBox x:Name="PasswordInput" Width="200" />
-                    <Button x:Name="LoadButton" Content="Load Playlist" Style="{StaticResource PrimaryButton}"
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Save Profile" Style="{StaticResource PrimaryButton}"
+                            Click="SaveProfileButton_Click" Width="120" />
+                    <Button x:Name="LoadButton" Content="Load Playlist"
                             Click="LoadButton_Click" Margin="8,0,0,0" Width="110" />
                     <TextBlock x:Name="StatusText" Style="{StaticResource LabelText}"
                                VerticalAlignment="Center" Margin="12,0" />
                 </StackPanel>
             </StackPanel>
-        </Border>
+        </Expander>
+
+    </StackPanel>
+</Border>
 
         <!-- Bottom: transport controls -->
         <Border DockPanel.Dock="Bottom" Background="{StaticResource BgSurface}"

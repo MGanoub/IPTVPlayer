@@ -11,6 +11,8 @@ namespace IpTvApp
         public string Password { get; set; }
         public DateTime? LastUpdated { get; set; }
         
+        public override string ToString() => Name;
+        
         // Navigation property: "a profile has many channels"
         public List<Channel> Channels { get; set; } = new();
 
