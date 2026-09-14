@@ -4,7 +4,8 @@ A desktop IPTV player for Windows, built with WPF and LibVLCSharp. Connects to X
 
 This project was built as a practice exercise in C#, WPF, and EF Core - The architecture reflects that: it favors clarity over cleverness, and a few design decisions are called out below specifically because they were practicing moments.
 
-<img width="1252" height="721" alt="image" src="https://github.com/user-attachments/assets/1c5c8689-30c3-4cf1-8cb3-927d3bc12c9c" />
+<img width="1407" height="784" alt="image" src="https://github.com/user-attachments/assets/87862d5a-634e-4df9-9987-4188582190bd" />
+
 
 
 ## Features
